@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - Grand Theft Auto V</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* Matching dark background */
+            background-image: radial-gradient(circle at top, rgba(59, 130, 246, 0.1), transparent 40%);
+        }
+        .download-card {
+            background-color: #1e1e1e;
+            border: 1px solid #2a2a2a;
+        }
+        .start-btn, .redeem-btn {
+            transition: all 0.3s ease;
+        }
+        .start-btn {
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+        }
+        .start-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+        .start-btn:disabled {
+            background: #4b5563; /* Gray out when disabled */
+            cursor: not-allowed;
+        }
+        /* New style for the Redeem button */
+        .redeem-btn {
+            background: linear-gradient(90deg, #f59e0b, #ef4444); /* Amber to Red gradient */
+        }
+        .redeem-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        .progress-bar-inner {
+            /* UPDATED: Progress bar animation now takes 5 minutes (300 seconds) */
+            transition: width 300s linear; 
+        }
+    </style>
+</head>
+<body class="text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="download-card w-full max-w-lg rounded-xl shadow-2xl p-8 text-center">
+        <i class="fas fa-gamepad text-5xl text-blue-500 mb-4"></i>
+        <h1 class="text-3xl font-bold mb-2">Your Download is Ready</h1>
+        <p class="text-gray-400 mb-6">You are about to download <span class="font-semibold text-blue-400">Minecraft Java & Bedrock Edition</span>.</p>
+
+        <div class="bg-gray-800/50 rounded-lg p-4 mb-6 text-left text-sm flex justify-around">
+            <div>
+                <p class="text-gray-400">File Size</p>
+                <p class="font-bold text-lg">1.05 GB</p>
+            </div>
+            <div>
+                <p class="text-gray-400">Version</p>
+                <p class="font-bold text-lg">v1.21.114</p>
+            </div>
+            <div>
+                <p class="text-gray-400">Platform</p>
+                <p class="font-bold text-lg">EXE/APK/IOS</p>
+            </div>
+        </div>
+
+        <div class="w-full bg-gray-700 rounded-full h-4 mb-2 overflow-hidden">
+            <div id="progress-bar" class="progress-bar-inner bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
+        </div>
+        <p id="progress-text" class="text-sm text-gray-400 mb-8">Click "Start Download" to begin.</p>
+        
+        <div id="button-container">
+            <button id="start-download-btn" class="start-btn w-full text-white font-bold text-lg rounded-full py-4 px-10 uppercase tracking-wider">
+                Start Download
+            </button>
+            <a href="#" id="redeem-btn" class="redeem-btn hidden w-full text-center text-white font-bold text-lg rounded-full py-4 px-10 uppercase tracking-wider block">
+                Open Now
+            </a>
+        </div>
+
+        <div id="instructions" class="text-left text-gray-500 text-xs mt-6 hidden">
+            <p class="font-bold text-gray-300 mb-2">Thank you for downloading!</p>
+            <ol class="list-decimal list-inside space-y-1">
+                <li>Once you download the file, locate it in your downloads folder.</li>
+                <li>Run the installer and follow the on-screen instructions.</li>
+                <li>Enjoy the game!</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startBtn = document.getElementById('start-download-btn');
+            const redeemBtn = document.getElementById('redeem-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const instructions = document.getElementById('instructions');
+
+            startBtn.addEventListener('click', () => {
+                // 1. Disable the button and update text
+                startBtn.disabled = true;
+                startBtn.textContent = 'Downloading...';
+                progressText.textContent = 'Download initiated. This will take approximately 5 minutes.';
+
+                // 2. Start the progress bar animation (triggers the 5-minute CSS transition)
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                }, 100);
+                
+                // 3. After 5 minutes (300,000 milliseconds), show the Redeem button
+                setTimeout(() => {
+                    progressText.textContent = '✅ Download complete. Click below to Open Google Drive link.';
+                    
+                    // Hide the download button
+                    startBtn.classList.add('hidden');
+                    
+                    // Show the redeem button
+                    redeemBtn.classList.remove('hidden');
+
+                    // Show instructions
+                    instructions.classList.remove('hidden'); 
+                }, 300000); // 300,000 ms = 5 minutes
+            });
+        });
+    </script>
+</body>
+</html>

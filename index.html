@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreeGames - Free Game Downloads</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Animate On Scroll (AOS) Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom styles to enhance the gaming theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212; /* A very dark grey, almost black */
+        }
+
+        .hero-bg {
+            /* 1. Removed CSS background image here.
+                2. Added 'relative' class in HTML and 'absolute' img tag.
+            */
+            /* Set min-height for the section */
+            min-height: 500px;
+        }
+        .card-bg {
+            background-color: #1e1e1e; /* Darker card background */
+            border: 1px solid #2a2a2a;
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 150, 255, 0.15);
+        }
+        .download-btn {
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+        /* Custom scrollbar for a more modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 10px;
+            border: 2px solid #1e1e1e;
+        }
+        /* Style for the download notification toast */
+        #toast-notification {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .genre-card:hover i {
+            color: #3b82f6;
+        }
+        /* Ensures content is centered over the background image */
+        .hero-content {
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Header / Navigation Bar (omitted for brevity, no changes) -->
+    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-800">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="" class="text-2xl font-bold tracking-wider">
+                <span class="text-blue-500">Free</span>Games
+            </a>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="relative">
+                    <input type="text" placeholder="Search for games..." class="bg-gray-800 text-white rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all duration-300">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Home</a>
+                <a href="#games" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Games</a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Community</a>
+                <a href="#" class="bg-gray-700 hover:bg-gray-600 rounded-full px-4 py-2 text-sm font-semibold transition-colors">Login</a>
+                <a href="#" class="bg-blue-600 hover:bg-blue-500 rounded-full px-4 py-2 text-sm font-semibold transition-colors">Sign Up</a>
+            </div>
+
+            <!-- Mobile Burger Menu -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-xl">
+            <a href="#" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Home</a>
+            <a href="#games" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Games</a>
+            <a href="#" class="block py-3 px-6 text-gray-300 hover:bg-gray-800">Community</a>
+            <div class="px-6 py-4 border-t border-gray-800 flex items-center space-x-4">
+                 <a href="#" class="flex-1 text-center bg-gray-700 hover:bg-gray-600 rounded-full px-4 py-2 text-sm font-semibold transition-colors">Login</a>
+                <a href="#" class="flex-1 text-center bg-blue-600 hover:bg-blue-500 rounded-full px-4 py-2 text-sm font-semibold transition-colors">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section for Featured Game -->
+        <section class="hero-bg py-24 md:py-40 relative overflow-hidden">
+            
+            <!-- The new <img> tag for the background -->
+            <img 
+                src="Assets/images/ss_8340fd391012e12be7e4c02e65801a2648a6b60e.1920x1080.jpg" 
+                alt="Featured Game Background" 
+                class="absolute inset-0 w-full h-full object-cover z-0"
+                onerror="this.onerror=null;this.src='https://placehold.co/1600x900/121212/6366f1?text=Fallback+BG';"
+            >
+            
+            <!-- Overlay to make text readable -->
+            <div class="absolute inset-0 bg-black/70 z-10"></div>
+
+            <!-- Hero Content -->
+            <div class="container mx-auto px-6 text-center flex flex-col items-center relative hero-content">
+                 <!-- 
+                    REPLACE THIS SRC with the link to your own logo image.
+                    For example: src="https://your-website.com/logo.png"
+                 -->
+                 <img src="Assets/images/Gemini_Generated_Image_eawkt9eawkt9eawk.png" alt="FreeGames Logo" class="mb-8 rounded-full shadow-lg border-4 border-blue-500/50 w-32 h-32 md:w-40 md:h-40 object-cover" data-aos="zoom-in">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-widest text-shadow-lg" data-aos="fade-down" data-aos-delay="100">Grand Theft Auto V</h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300" data-aos="fade-up" data-aos-delay="300">
+                    Live another life in a futuristic metropolis obsessed with power, glamour and Sport car modification
+                </p>
+                <div class="mt-8" data-aos="fade-up" data-aos-delay="500">
+                    <a href="GTA.html" target="_blank" data-game-title="Grand Theft Auto V" class="download-btn inline-block text-white font-bold text-lg rounded-full py-4 px-10 uppercase tracking-wider">
+                        Download Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse by Genre Section (omitted for brevity, no changes) -->
+        <section id="genres" class="py-20 bg-black/20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-10 text-center" data-aos="fade-up">Browse by Genre</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 text-center">
+                    <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-crosshairs text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">Action</h3>
+                    </div>
+                    <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-hat-wizard text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">RPG</h3>
+                    </div>
+                    <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-flag-checkered text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">Racing</h3>
+                    </div>
+                    <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-puzzle-piece text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">Puzzle</h3>
+                    </div>
+                     <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="500">
+                        <i class="fas fa-ghost text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">Horror</h3>
+                    </div>
+                    <div class="genre-card card-bg p-4 rounded-lg transition-all duration-300 hover:bg-gray-800 cursor-pointer" data-aos="fade-up" data-aos-delay="600">
+                        <i class="fas fa-users text-4xl text-gray-400 transition-colors duration-300"></i>
+                        <h3 class="mt-4 font-semibold">Multiplayer</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Gallery Section (omitted for brevity, no changes) -->
+        <section id="games" class="py-20 bg-[#121212]">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-2 text-center" data-aos="fade-up">Popular Free Games</h2>
+                <p class="text-center text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">Explore our curated list of top-rated, free-to-play titles.</p>
+                
+                <!-- Game Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    
+                    <!-- Game Card 1: GTA-like -->
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg card-hover-effect" data-aos="fade-up" data-aos-delay="200">
+                        <img src="Assets/images/GTA5.jpg" alt="Grand Theft Auto V" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1e1e1e/ffffff?text=GTA+V';">
+                        <div class="p-5">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold">Grand Theft Auto V</h3>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Open World</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-4">Grand Theft Auto V is a satirical, open-world crime game where players switch between three distinct criminals—Michael, Franklin, and Trevor—to pull off major heists in the city of Los Santos.</p>
+                            <a href="GTA.html" target="_blank" data-game-title="Grand Theft Auto V" class="download-btn block w-full text-center text-white font-semibold rounded-lg py-2.5 px-4">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Game Card 2: Fantasy RPG -->
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg card-hover-effect" data-aos="fade-up" data-aos-delay="300">
+                        <img src="Assets/images/rdr2.jpg" alt="Aetheria: The Last Kingdom" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                             <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold">Red Dead Redemption 2</h3>
+                                <span class="bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Open World</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-4">Red Dead Redemption 2 is a massive open-world Western prequel where outlaw Arthur Morgan must confront his loyalty to a collapsing gang while surviving the end of the Wild West </p>
+                            <a href="RDR2.html" target="_blank" data-game-title="Aetheria: The Last Kingdom" class="download-btn block w-full text-center text-white font-semibold rounded-lg py-2.5 px-4">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Game Card 3: Racing -->
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg card-hover-effect" data-aos="fade-up" data-aos-delay="400">
+                        <img src="Assets/images/cod3.jpg" alt="Galaxy Racers" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                             <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold">Call of Duty: Black Ops III</h3>
+                                <span class="bg-amber-500/20 text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">FPS</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-4">Call of Duty: Black Ops III is a futuristic first-person shooter set in 2065, known for its cybernetic soldier abilities, boost-jumping multiplayer movement, and robust, separate Zombies co-op mode</p>
+                            <a href="COD3.html" target="_blank" data-game-title="Galaxy Racers" class="download-btn block w-full text-center text-white font-semibold rounded-lg py-2.5 px-4">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Game Card 4: Horror -->
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg card-hover-effect" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Global-Header_Image-Tile_MC-Java-Bedrock_570x321.jpg" alt="Echoes of the Void" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                             <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold">Minecraft Java & Bedrock Edition</h3>
+                                <span class="bg-red-500/20 text-red-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Open World</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-4">Build anything you can imagine and explore boundless worlds, all crafted from blocks. Survive the night, mine deep for resources, and share your adventures with friends. Download on Windows and Android</p>
+                            <a href="Minecraft.html" target="_blank" data-game-title="Echoes of the Void" class="download-btn block w-full text-center text-white font-semibold rounded-lg py-2.5 px-4">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (omitted for brevity, no changes) -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; 2025 FreeGames. All Rights Reserved.</p>
+            <p class="text-sm mt-2">All game titles, content, publisher names, trademarks, artwork, and associated imagery are trademarks and/or copyright material of their respective owners.</p>
+        </div>
+    </footer>
+
+    <!-- Download Notification Toast (omitted for brevity, no changes) -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-xl opacity-0 transform translate-y-10">
+        <p id="toast-message">Download started!</p>
+    </div>
+
+    <!-- Animate On Scroll (AOS) Library JS (omitted for brevity, no changes) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800, // Animation duration in milliseconds
+            once: true, // Whether animation should happen only once - while scrolling down
+            offset: 50, // Offset (in px) from the original trigger point
+        });
+
+        // JavaScript to handle the download notification
+        document.addEventListener('DOMContentLoaded', () => {
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            const toast = document.getElementById('toast-notification');
+            const toastMessage = document.getElementById('toast-message');
+            let toastTimeout;
+
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const gameTitle = button.dataset.gameTitle;
+                    
+                    if (!gameTitle) return; // Exit if no game title is found
+
+                    // --- Show Toast Notification ---
+                    toastMessage.textContent = `Redirecting to download for "${gameTitle}"...`;
+                    clearTimeout(toastTimeout);
+                    toast.style.opacity = '1';
+                    toast.style.transform = 'translateY(0)';
+                    toastTimeout = setTimeout(() => {
+                        toast.style.opacity = '0';
+                        toast.style.transform = 'translateY(10px)';
+                    }, 3000);
+                    // The browser will now follow the href link naturally.
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
