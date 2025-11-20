@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Gamers | Hardware Reviews, Esports & Tech News</title>
+    <meta name="description" content="The ultimate source for gaming hardware reviews, PC build guides, and esports news.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tg-brand': '#00E5FF',
+                        'tg-dark': '#0B0C10',
+                        'tg-gray': '#1F2833',
+                        'tg-light': '#C5C6C7',
+                        'tg-accent': '#45A29E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        brand: ['Orbitron', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0C10; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #45A29E; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #66FCF1; 
+        }
+        
+        /* Animation classes */
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 229, 255, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Article content styling */
+        .article-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00E5FF;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: white;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #C5C6C7;
+        }
+        .article-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: #C5C6C7;
+        }
+        
+        /* Legal Page Styling */
+        .legal-content h2 {
+            color: #00E5FF;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content p {
+            margin-bottom: 1rem;
+            color: #C5C6C7;
+        }
+        .legal-content ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: #C5C6C7;
+        }
+    </style>
+</head>
+<body class="bg-tg-dark text-gray-200 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- ================= HEADER ================= -->
+    <header class="bg-tg-gray border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" onclick="showPage('home')" class="flex items-center gap-2 group">
+                    <i class="fa-solid fa-gamepad text-3xl text-tg-brand group-hover:animate-pulse"></i>
+                    <span class="font-brand text-2xl font-bold text-white tracking-wider">TECHNICAL<span class="text-tg-brand">GAMERS</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="text-gray-300 hover:text-tg-brand transition-colors font-medium focus:outline-none">Home</button>
+                    <button onclick="showPage('about')" class="text-gray-300 hover:text-tg-brand transition-colors font-medium focus:outline-none">About Us</button>
+                    <button onclick="showPage('contact')" class="text-gray-300 hover:text-tg-brand transition-colors font-medium focus:outline-none">Contact</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-white focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Nav Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-tg-gray border-t border-gray-700">
+            <button onclick="showPage('home'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 hover:bg-gray-800 hover:text-tg-brand">Home</button>
+            <button onclick="showPage('about'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 hover:bg-gray-800 hover:text-tg-brand">About Us</button>
+            <button onclick="showPage('contact'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 hover:bg-gray-800 hover:text-tg-brand">Contact</button>
+        </div>
+    </header>
+
+    <!-- ================= ADSENSE LEADERBOARD (Top) ================= -->
+    <div class="container mx-auto px-4 py-4 flex justify-center">
+        <div class="w-full max-w-[728px] h-[90px] bg-gray-800 border border-gray-700 border-dashed flex flex-col items-center justify-center text-gray-500 text-sm">
+            <span class="font-bold">Google AdSense Space (Leaderboard 728x90)</span>
+            <span class="text-xs">Paste your ad code here</span>
+        </div>
+    </div>
+
+    <!-- ================= HOME PAGE VIEW ================= -->
+    <div id="home-page" class="fade-in">
+        
+        <!-- HERO SECTION -->
+        <section class="relative bg-gray-900 overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-tg-brand opacity-5 blur-3xl"></div>
+            
+            <div class="container mx-auto px-4 py-12 md:py-20 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 z-10">
+                    <span class="inline-block py-1 px-3 rounded bg-tg-brand/10 text-tg-brand text-sm font-bold mb-4 border border-tg-brand/20">
+                        EXCLUSIVE LEAK
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-brand font-bold text-white mb-6 leading-tight">
+                        The Next Gen: <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-tg-brand to-blue-600">RTX 5090 Ti Architecture</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg mb-8 max-w-lg">
+                        We dive deep into the Blackwell architecture rumors. Is 8K gaming finally a reality for consumers? Power draw, CUDA cores, and pricing analysis.
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="alert('This would open the featured article.')" class="bg-tg-brand text-black font-bold py-3 px-8 rounded hover:bg-cyan-300 transition-colors">Read Full Analysis</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="bg-gray-800 rounded-xl aspect-video w-full flex items-center justify-center border border-gray-700 shadow-2xl relative overflow-hidden group">
+                        <i class="fa-solid fa-microchip text-6xl text-gray-600 group-hover:text-tg-brand transition-colors duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT GRID -->
+        <div class="container mx-auto px-4 py-12 flex-grow">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- LEFT COLUMN: Articles -->
+                <main class="lg:w-2/3">
+                    
+                    <div class="flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
+                        <h2 class="text-2xl font-brand font-bold text-white"><i class="fa-solid fa-fire text-orange-500 mr-2"></i> Latest Detailed Reviews</h2>
+                        <span class="text-sm text-gray-500">Updated Daily</span>
+                    </div>
+
+                    <!-- Article Grid -->
+                    <div class="space-y-8">
+                        
+                        <!-- Card 1: Headset -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-headset text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">HARDWARE</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('headset')">HyperX Cloud III Wireless</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">8.5/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The legendary comfort returns without wires. We tested the 120-hour battery claim and microphone clarity.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> Battery: 120 Hours</li>
+                                            <li><i class="fa-solid fa-wifi text-blue-500 mr-1"></i> Conn: 2.4GHz USB-C</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('headset')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Keyboard -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-keyboard text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">PERIPHERALS</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('keyboard')">Keychron Q1 Pro Review</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.2/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Custom mechanical keyboards are getting easier to buy. The Q1 Pro brings wireless connectivity and a gasket mount.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-layer-group text-orange-500 mr-1"></i> Mount: Gasket</li>
+                                            <li><i class="fa-solid fa-bluetooth text-blue-500 mr-1"></i> BT: 5.1 (3 Devices)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('keyboard')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- AD UNIT (In-Feed) -->
+                        <div class="w-full bg-gray-800 border border-dashed border-gray-600 rounded-lg p-6 flex flex-col items-center justify-center h-40">
+                            <span class="text-gray-400 font-bold text-sm">Google AdSense (In-Feed Native Ad)</span>
+                            <span class="text-gray-500 text-xs mt-1">Ideally placed between cards 2 and 3</span>
+                        </div>
+
+                        <!-- Card 3: Mouse -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-mouse text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">ESPORTS</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('mouse')">Logitech G Pro X Superlight 2</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.5/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The king of esports mice returns with 2K polling (updateable to 4K) and optical switches. Is it worth the upgrade?
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-weight-hanging text-gray-400 mr-1"></i> Weight: 60g</li>
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> Switches: Optical</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('mouse')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 4: Monitor -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-desktop text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded">DISPLAY</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('monitor')">Alienware AW3423DWF OLED</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.8/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        QD-OLED technology delivers perfect blacks and vibrant colors. This monitor changes how you experience atmospheric games.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> Refresh: 165Hz</li>
+                                            <li><i class="fa-solid fa-sun text-orange-500 mr-1"></i> Panel: QD-OLED</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('monitor')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 5: Laptop -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-laptop text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-indigo-500 text-white text-xs font-bold px-2 py-1 rounded">MOBILE</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('laptop')">Razer Blade 16 (2024)</h3>
+                                        <span class="text-yellow-400 font-bold border border-yellow-400 px-2 rounded text-sm">8.0/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Incredible performance with a price tag to match. The dual-mode mini-LED screen is a game changer.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-microchip text-gray-400 mr-1"></i> CPU: i9-14900HX</li>
+                                            <li><i class="fa-solid fa-memory text-green-500 mr-1"></i> GPU: RTX 4090</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('laptop')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 6: GPU Guide -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-server text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">GUIDE</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('gpu-guide')">Best GPU for Every Budget (Nov 2024)</h3>
+                                        <span class="text-gray-400 text-xs italic mt-1">Updated</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        From the RX 6600 for 1080p gaming to the RTX 4090 for 4K monsters. We break down the best bang for your buck.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Top Picks</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-star text-yellow-500 mr-1"></i> Budget: RX 7600</li>
+                                            <li><i class="fa-solid fa-star text-yellow-500 mr-1"></i> Ultra: RTX 4090</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('gpu-guide')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Guide &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 7: CPU -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-microchip text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">CPU</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('cpu-7800x3d')">AMD Ryzen 7 7800X3D Review</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.9/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The undisputed king of gaming CPUs. The 3D V-Cache technology destroys everything else in pure gaming performance.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> Cores: 8C/16T</li>
+                                            <li><i class="fa-solid fa-memory text-blue-500 mr-1"></i> L3 Cache: 96MB</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('cpu-7800x3d')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 8: Chair -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-chair text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded">FURNITURE</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('chair-secretlab')">Secretlab Titan Evo 2022 Review</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.0/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Is it just marketing, or is it actually comfortable? We test the cold-cure foam and magnetic head pillow.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-magnet text-red-500 mr-1"></i> Pillow: Magnetic</li>
+                                            <li><i class="fa-solid fa-ruler text-gray-400 mr-1"></i> Sizes: S, R, XL</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('chair-secretlab')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 9: Handheld -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-gamepad text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-indigo-400 text-white text-xs font-bold px-2 py-1 rounded">HANDHELD</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('deck-oled')">Steam Deck OLED: HDR in Your Hands</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.6/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Valve didn't just swap the screen; they improved battery life, thermals, and download speeds. The definitive way to play PC games on the go.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-sun text-orange-500 mr-1"></i> Screen: 90Hz OLED</li>
+                                            <li><i class="fa-solid fa-battery-full text-green-500 mr-1"></i> Battery: +40% Life</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('deck-oled')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 10: Wooting -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-keyboard text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">PERIPHERALS</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('wooting-60he')">Wooting 60HE: Is it Cheating?</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.8/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The analog Hall Effect switches allow for Rapid Trigger, changing how you play Valorant and CS2 forever.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-wave-square text-blue-400 mr-1"></i> Tech: Rapid Trigger</li>
+                                            <li><i class="fa-solid fa-ruler-horizontal text-gray-400 mr-1"></i> Size: 60%</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('wooting-60he')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 11: RTX 4070 Super -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-microchip text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">GPU</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('rtx-4070-super')">Nvidia RTX 4070 Super Review</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">8.8/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The "Super" refresh fixes the price-to-performance ratio. Excellent 1440p performance with DLSS 3.5 support.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-memory text-gray-400 mr-1"></i> VRAM: 12GB GDDR6X</li>
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> TGP: 220W</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('rtx-4070-super')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                         <!-- Card 12: SSD -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-database text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-gray-600 text-white text-xs font-bold px-2 py-1 rounded">STORAGE</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('ssd-990-pro')">Samsung 990 Pro SSD Review</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.3/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Loading screens are a thing of the past. Pushing the limits of PCIe Gen 4 speeds.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-gauge-high text-red-500 mr-1"></i> Read: 7450 MB/s</li>
+                                            <li><i class="fa-solid fa-gauge-high text-orange-500 mr-1"></i> Write: 6900 MB/s</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('ssd-990-pro')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 13: SteelSeries Headset -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-headphones text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">AUDIO</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('headset-nova')">SteelSeries Arctis Nova Pro Wireless</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.1/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        Unlimited battery life thanks to the hot-swap system. Active Noise Cancellation makes this a lifestyle headset.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-infinity text-purple-500 mr-1"></i> Power: Dual Battery</li>
+                                            <li><i class="fa-solid fa-volume-xmark text-gray-400 mr-1"></i> Tech: Active ANC</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('headset-nova')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 14: TV -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-tv text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-purple-700 text-white text-xs font-bold px-2 py-1 rounded">HOME THEATER</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('tv-c3')">LG C3 OLED: The Gamer's TV</h3>
+                                        <span class="text-green-400 font-bold border border-green-400 px-2 rounded text-sm">9.4/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        With 4 HDMI 2.1 ports and full G-Sync/FreeSync support, this isn't just a TV; it's a giant gaming monitor.
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-bolt text-yellow-500 mr-1"></i> Refresh: 120Hz</li>
+                                            <li><i class="fa-solid fa-gamepad text-blue-500 mr-1"></i> VRR: G-Sync/FreeSync</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('tv-c3')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                        <!-- Card 15: Finalmouse -->
+                        <article class="bg-tg-gray rounded-lg overflow-hidden hover-card border border-gray-800 flex flex-col md:flex-row">
+                            <div class="md:w-1/3 bg-gray-700 flex items-center justify-center relative min-h-[200px]">
+                                <i class="fa-solid fa-feather text-5xl text-gray-500"></i>
+                                <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">ESPORTS</span>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white hover:text-tg-brand cursor-pointer" onclick="openArticle('mouse-final')">Finalmouse UltralightX Review</h3>
+                                        <span class="text-yellow-400 font-bold border border-yellow-400 px-2 rounded text-sm">8.7/10</span>
+                                    </div>
+                                    <p class="text-gray-400 text-sm mb-4">
+                                        The carbon fiber composite shell makes this mouse impossibly light (under 35g). But is it durable enough for daily use?
+                                    </p>
+                                    <div class="bg-gray-800/50 p-3 rounded border border-gray-700 mb-4">
+                                        <h4 class="text-xs font-bold text-tg-brand mb-2 uppercase">Quick Specs</h4>
+                                        <ul class="text-xs text-gray-300 grid grid-cols-2 gap-2">
+                                            <li><i class="fa-solid fa-weight-hanging text-gray-400 mr-1"></i> Weight: ~35g</li>
+                                            <li><i class="fa-solid fa-gem text-blue-300 mr-1"></i> Material: Carbon Fiber</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button onclick="openArticle('mouse-final')" class="text-tg-brand font-bold text-sm hover:underline self-start">Read Full Review &rarr;</button>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center gap-2 mt-12">
+                        <button class="px-4 py-2 bg-gray-800 hover:bg-tg-brand hover:text-black rounded transition-colors disabled:opacity-50">Previous</button>
+                        <button class="px-4 py-2 bg-tg-brand text-black rounded font-bold">1</button>
+                        <button class="px-4 py-2 bg-gray-800 hover:bg-tg-brand hover:text-black rounded transition-colors">2</button>
+                        <button class="px-4 py-2 bg-gray-800 hover:bg-tg-brand hover:text-black rounded transition-colors">3</button>
+                        <button class="px-4 py-2 bg-gray-800 hover:bg-tg-brand hover:text-black rounded transition-colors">Next</button>
+                    </div>
+                </main>
+
+                <!-- RIGHT COLUMN: Sidebar -->
+                <aside class="lg:w-1/3 space-y-8">
+                    <div class="bg-tg-gray rounded-lg p-6 border border-gray-800">
+                        <h3 class="text-lg font-brand font-bold text-white mb-4 border-l-4 border-tg-brand pl-3">Welcome</h3>
+                        <p class="text-gray-400 text-sm mb-4">Technical Gamers is your #1 source for unbiased hardware reviews and tech tips.</p>
+                        <button onclick="showPage('about')" class="w-full border border-tg-brand text-tg-brand py-2 rounded hover:bg-tg-brand hover:text-black transition-colors text-sm font-bold mb-4">Read Our Story</button>
+                    </div>
+                    <div class="w-full h-[600px] bg-gray-800 border border-gray-700 border-dashed flex flex-col items-center justify-center text-gray-500">
+                        <span class="font-bold text-center px-4">Google AdSense<br>(Vertical 300x600)</span>
+                        <span class="text-xs mt-2">High paying slot</span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FULL ARTICLE VIEW (Dynamic) ================= -->
+    <div id="article-view" class="hidden fade-in flex-grow">
+        <div class="container mx-auto px-4 py-8">
+            <button onclick="showPage('home')" class="mb-6 text-gray-400 hover:text-tg-brand flex items-center gap-2 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Back to Reviews
+            </button>
+            <div class="bg-gray-900 rounded-xl p-8 border border-gray-800 mb-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-10 -mt-10 w-64 h-64 rounded-full bg-tg-brand opacity-5 blur-3xl"></div>
+                <div class="flex items-center gap-4 mb-4">
+                    <span id="art-category" class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded uppercase">Hardware</span>
+                    <span id="art-date" class="text-gray-400 text-sm"><i class="fa-regular fa-clock mr-1"></i> 2 hours ago</span>
+                </div>
+                <h1 id="art-title" class="text-3xl md:text-5xl font-brand font-bold text-white mb-6 leading-tight">Article Title</h1>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-2/3">
+                    <div class="bg-gray-800 rounded-lg aspect-video mb-8 flex items-center justify-center border border-gray-700">
+                         <i id="art-icon" class="fa-solid fa-gamepad text-6xl text-gray-600"></i>
+                    </div>
+                    <div id="art-content" class="article-content text-gray-300"></div>
+                </div>
+                <div class="lg:w-1/3">
+                     <div class="bg-tg-gray rounded-lg p-6 border border-gray-800">
+                        <h3 class="text-lg font-bold text-white mb-4">Score Verdict</h3>
+                        <div class="text-center mb-4">
+                            <span id="art-score" class="text-5xl font-brand font-bold text-tg-brand">8.5</span>
+                            <span class="text-xl text-gray-500">/10</span>
+                        </div>
+                        <button class="w-full bg-tg-brand text-black font-bold py-3 rounded hover:bg-cyan-300 transition-colors">Check Price on Amazon</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ABOUT PAGE VIEW ================= -->
+    <div id="about-page" class="hidden fade-in flex-grow">
+        <div class="bg-gray-900 py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-brand font-bold text-white mb-6">About <span class="text-tg-brand">Technical Gamers</span></h1>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Our mission is simple: To provide honest, in-depth technical analysis of gaming hardware without the fluff.</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2 space-y-12">
+                    <section>
+                        <h2 class="text-2xl font-brand text-white mb-4 border-b border-gray-800 pb-2">Our Story</h2>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Technical Gamers was founded in 2024...</p>
+                    </section>
+                </div>
+                <div class="lg:col-span-1 space-y-8">
+                     <div class="bg-tg-brand text-black p-6 rounded-lg text-center">
+                        <h3 class="text-lg font-bold mb-2">Write For Us?</h3>
+                        <p class="text-sm mb-4 opacity-80">We are always looking for passionate hardware reviewers.</p>
+                        <button class="bg-black text-white px-6 py-2 rounded font-bold hover:bg-gray-800 transition-colors text-sm">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= LEGAL PAGES (NEW DETAILED CONTENT) ================= -->
+
+    <!-- 1. PRIVACY POLICY PAGE -->
+    <div id="privacy-page" class="hidden fade-in flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <h1 class="text-4xl font-brand font-bold text-white mb-8 border-b border-gray-800 pb-4">Privacy Policy</h1>
+        <div class="legal-content text-gray-300">
+            <p><strong>Last Updated: November 2024</strong></p>
+            <p>At Technical Gamers, accessible from www.technicalgamers.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Technical Gamers and how we use it.</p>
+            
+            <h2>Log Files</h2>
+            <p>Technical Gamers follows a standard procedure of using log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable.</p>
+            
+            <h2>Cookies and Web Beacons</h2>
+            <p>Like any other website, Technical Gamers uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+            
+            <h2>Google DoubleClick DART Cookie</h2>
+            <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.technicalgamers.com and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" class="text-tg-brand hover:underline">https://policies.google.com/technologies/ads</a></p>
+            
+            <h2>Third Party Privacy Policies</h2>
+            <p>Technical Gamers's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
+        </div>
+    </div>
+
+    <!-- 2. TERMS OF SERVICE PAGE -->
+    <div id="terms-page" class="hidden fade-in flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <h1 class="text-4xl font-brand font-bold text-white mb-8 border-b border-gray-800 pb-4">Terms of Service</h1>
+        <div class="legal-content text-gray-300">
+            <h2>1. Terms</h2>
+            <p>By accessing this Website, accessible from www.technicalgamers.com, you are agreeing to be bound by these Website Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws.</p>
+
+            <h2>2. Use License</h2>
+            <p>Permission is granted to temporarily download one copy of the materials on Technical Gamers's Website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul>
+                <li>modify or copy the materials;</li>
+                <li>use the materials for any commercial purpose or for any public display;</li>
+                <li>attempt to reverse engineer any software contained on Technical Gamers's Website;</li>
+                <li>remove any copyright or other proprietary notations from the materials;</li>
+            </ul>
+
+            <h2>3. Disclaimer</h2>
+            <p>All the materials on Technical Gamers’s Website are provided "as is". Technical Gamers makes no warranties, may it be expressed or implied, therefore negates all other warranties. Furthermore, Technical Gamers does not make any representations concerning the accuracy or reliability of the use of the materials on its Website.</p>
+
+            <h2>4. Limitations</h2>
+            <p>In no event shall Technical Gamers or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Technical Gamers’s Website.</p>
+        </div>
+    </div>
+
+    <!-- 3. CONTACT US PAGE -->
+    <div id="contact-page" class="hidden fade-in flex-grow container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-brand font-bold text-white mb-8 text-center">Get In Touch</h1>
+        <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            
+            <!-- Contact Form -->
+            <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-xl">
+                <h2 class="text-2xl font-bold text-white mb-6">Send us a Message</h2>
+                <form onsubmit="event.preventDefault(); alert('Thank you for your message! We will reply shortly.');" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-400 text-sm mb-2">First Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:border-tg-brand outline-none transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm mb-2">Last Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:border-tg-brand outline-none transition-colors" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:border-tg-brand outline-none transition-colors" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">Subject</label>
+                        <select class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:border-tg-brand outline-none transition-colors">
+                            <option>General Inquiry</option>
+                            <option>Review Request</option>
+                            <option>Advertising</option>
+                            <option>Report a Bug</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-sm mb-2">Message</label>
+                        <textarea class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:border-tg-brand outline-none h-40 transition-colors" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-tg-brand text-black font-bold py-3 rounded hover:bg-cyan-300 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.3)]">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="flex flex-col justify-center space-y-8">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-tg-gray rounded-full flex items-center justify-center border border-gray-700 flex-shrink-0">
+                        <i class="fa-solid fa-envelope text-tg-brand text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1">Email Us</h3>
+                        <p class="text-gray-400 text-sm mb-2">For general inquiries and support:</p>
+                        <a href="mailto:support@technicalgamers.com" class="text-white hover:text-tg-brand transition-colors font-mono">support@technicalgamers.com</a>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-tg-gray rounded-full flex items-center justify-center border border-gray-700 flex-shrink-0">
+                        <i class="fa-solid fa-briefcase text-tg-brand text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1">Business & Ads</h3>
+                        <p class="text-gray-400 text-sm mb-2">For partnerships and advertising opportunities:</p>
+                        <a href="mailto:business@technicalgamers.com" class="text-white hover:text-tg-brand transition-colors font-mono">business@technicalgamers.com</a>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-tg-gray rounded-full flex items-center justify-center border border-gray-700 flex-shrink-0">
+                        <i class="fa-solid fa-location-dot text-tg-brand text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1">Mailing Address</h3>
+                        <p class="text-gray-400 text-sm">
+                            Technical Gamers Inc.<br>
+                            1234 Silicon Ave, Suite 400<br>
+                            San Francisco, CA 94107<br>
+                            United States
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. COOKIE POLICY PAGE -->
+    <div id="cookie-page" class="hidden fade-in flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <h1 class="text-4xl font-brand font-bold text-white mb-8 border-b border-gray-800 pb-4">Cookie Policy</h1>
+        <div class="legal-content text-gray-300">
+            <p>This is the Cookie Policy for Technical Gamers, accessible from www.technicalgamers.com.</p>
+
+            <h2>What Are Cookies</h2>
+            <p>As is common practice with almost all professional websites this site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience. This page describes what information they gather, how we use it and why we sometimes need to store these cookies.</p>
+
+            <h2>How We Use Cookies</h2>
+            <p>We use cookies for a variety of reasons detailed below. Unfortunately in most cases there are no industry standard options for disabling cookies without completely disabling the functionality and features they add to this site.</p>
+
+            <h2>Disabling Cookies</h2>
+            <p>You can prevent the setting of cookies by adjusting the settings on your browser (see your browser Help for how to do this). Be aware that disabling cookies will affect the functionality of this and many other websites that you visit.</p>
+            
+            <h2>Third Party Cookies (AdSense)</h2>
+            <p>In some special cases we also use cookies provided by trusted third parties. The following section details which third party cookies you might encounter through this site.</p>
+            <ul>
+                <li><strong>Google AdSense:</strong> The Google AdSense service we use to serve advertising uses a DoubleClick cookie to serve more relevant ads across the web and limit the number of times that a given ad is shown to you.</li>
+                <li><strong>Google Analytics:</strong> This site uses Google Analytics which is one of the most widespread and trusted analytics solutions on the web for helping us to understand how you use the site and ways that we can improve your experience.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-black border-t border-gray-900 mt-auto pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <span class="font-brand text-xl font-bold text-white tracking-wider">TECHNICAL<span class="text-tg-brand">GAMERS</span></span>
+                    <p class="text-gray-500 text-sm mt-4">
+                        Building the future of gaming, one frame at a time.
+                    </p>
+                </div>
+                <!-- Content Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Content</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-tg-brand">Hardware Reviews</a></li>
+                        <li><a href="#" class="hover:text-tg-brand">PC Build Guides</a></li>
+                        <li><a href="#" class="hover:text-tg-brand">Peripherals</a></li>
+                    </ul>
+                </div>
+                <!-- Legal Links (Updated to use showPage) -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><button onclick="showPage('privacy')" class="hover:text-tg-brand text-left">Privacy Policy</button></li>
+                        <li><button onclick="showPage('terms')" class="hover:text-tg-brand text-left">Terms of Service</button></li>
+                        <li><button onclick="showPage('cookie')" class="hover:text-tg-brand text-left">Cookie Policy</button></li>
+                        <li><button onclick="showPage('contact')" class="hover:text-tg-brand text-left">Contact Us</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-900 pt-6 text-center text-xs text-gray-600">
+                <p>&copy; 2024 Technical Gamers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Logic -->
+    <script>
+        // === ARTICLE DATA (Expanded to 15 Items) ===
+        const articles = {
+            'headset': {
+                title: "HyperX Cloud III Wireless Review",
+                category: "Hardware",
+                date: "2 hours ago",
+                icon: "fa-headset",
+                score: "8.5",
+                content: `<p class="font-bold text-xl text-white mb-4">The Verdict: Comfort King Returns</p><p>The HyperX Cloud II was a staple of the esports scene. The Cloud III Wireless attempts to fill those very large shoes. The 120-hour battery life is a massive selling point.</p><h2>Sound Profile</h2><p>The 53mm drivers are tuned for competitive gaming, highlighting footsteps and reloads.</p>`
+            },
+            'keyboard': {
+                title: "Keychron Q1 Pro Review",
+                category: "Peripherals",
+                date: "5 hours ago",
+                icon: "fa-keyboard",
+                score: "9.2",
+                content: `<p class="font-bold text-xl text-white mb-4">Wireless Metal Mastery</p><p>Keychron has single-handedly changed the mechanical keyboard landscape. The Q1 Pro takes everything we loved about the original Q1 and cuts the cord.</p>`
+            },
+            'mouse': {
+                title: "Logitech G Pro X Superlight 2",
+                category: "Esports",
+                date: "1 day ago",
+                icon: "fa-mouse",
+                score: "9.5",
+                content: `<p class="font-bold text-xl text-white mb-4">The Gold Standard</p><p>While visually identical to its predecessor, the internal upgrades are significant. The optical hybrid switches prevent double-clicking issues entirely.</p>`
+            },
+            'monitor': {
+                title: "Alienware AW3423DWF OLED",
+                category: "Display",
+                date: "2 days ago",
+                icon: "fa-desktop",
+                score: "9.8",
+                content: `<p class="font-bold text-xl text-white mb-4">Visual Perfection</p><p>Once you go OLED, you cannot go back. The infinite contrast ratio makes space games like Starfield and Elite Dangerous look breathtaking.</p>`
+            },
+            'laptop': {
+                title: "Razer Blade 16 (2024)",
+                category: "Mobile",
+                date: "3 days ago",
+                icon: "fa-laptop",
+                score: "8.0",
+                content: `<p class="font-bold text-xl text-white mb-4">Power House</p><p>The dual-mode screen is the killer feature here. 4K for work, 1080p 240Hz for play. It runs hot, but the performance is undeniable.</p>`
+            },
+            'gpu-guide': {
+                title: "Best GPU for Every Budget",
+                category: "Guide",
+                date: "Updated Today",
+                icon: "fa-server",
+                score: "N/A",
+                content: `<p class="font-bold text-xl text-white mb-4">Buying Guide</p><p>Don't overspend. For 1080p, the RX 7600 is king. For 1440p, look at the 4070 Super. For 4K, the 4090 stands alone.</p>`
+            },
+            'cpu-7800x3d': {
+                title: "AMD Ryzen 7 7800X3D Review",
+                category: "CPU",
+                date: "4 days ago",
+                icon: "fa-microchip",
+                score: "9.9",
+                content: `<p class="font-bold text-xl text-white mb-4">The Gaming King</p><p>AMD's 3D V-Cache technology is magic. It delivers higher framerates than Intel's flagship i9 while consuming half the power. If you are building a gaming PC, this is the CPU to buy.</p>`
+            },
+            'chair-secretlab': {
+                title: "Secretlab Titan Evo 2022 Review",
+                category: "Furniture",
+                date: "1 week ago",
+                icon: "fa-chair",
+                score: "9.0",
+                content: `<p class="font-bold text-xl text-white mb-4">Worth the Premium?</p><p>The Titan Evo refines an already great chair. The magnetic head pillow is a brilliant quality-of-life improvement, eliminating straps. The foam is firm but supportive for 8+ hour sessions.</p>`
+            },
+            'deck-oled': {
+                title: "Steam Deck OLED Review",
+                category: "Handheld",
+                date: "1 week ago",
+                icon: "fa-gamepad",
+                score: "9.6",
+                content: `<p class="font-bold text-xl text-white mb-4">The Definitive Edition</p><p>The deep blacks of the OLED screen make colors pop. Combined with a larger battery and lighter weight, this is how the Steam Deck was meant to be.</p>`
+            },
+            'wooting-60he': {
+                title: "Wooting 60HE Review",
+                category: "Peripherals",
+                date: "2 weeks ago",
+                icon: "fa-keyboard",
+                score: "9.8",
+                content: `<p class="font-bold text-xl text-white mb-4">Hardware Cheats?</p><p>The Rapid Trigger feature resets keys the moment you lift your finger, allowing for impossible strafing speeds in shooters. It is a genuine competitive advantage.</p>`
+            },
+            'rtx-4070-super': {
+                title: "Nvidia RTX 4070 Super Review",
+                category: "GPU",
+                date: "2 weeks ago",
+                icon: "fa-microchip",
+                score: "8.8",
+                content: `<p class="font-bold text-xl text-white mb-4">The Sweet Spot</p><p>Nvidia fixed the pricing. The Super variant offers near-3090 performance for a fraction of the power draw. It's the best 1440p card on the market right now.</p>`
+            },
+            'ssd-990-pro': {
+                title: "Samsung 990 Pro SSD Review",
+                category: "Storage",
+                date: "3 weeks ago",
+                icon: "fa-database",
+                score: "9.3",
+                content: `<p class="font-bold text-xl text-white mb-4">Blazing Fast</p><p>With read speeds hitting 7450 MB/s, this drive maximizes the PCIe Gen 4 interface. Loading times in DirectStorage games are virtually instant.</p>`
+            },
+            'headset-nova': {
+                title: "SteelSeries Arctis Nova Pro Wireless",
+                category: "Audio",
+                date: "3 weeks ago",
+                icon: "fa-headphones",
+                score: "9.1",
+                content: `<p class="font-bold text-xl text-white mb-4">Infinite Battery</p><p>The base station charges a spare battery while you use the other. You never have to plug this headset in. The ANC is good, though not quite Sony/Bose level.</p>`
+            },
+            'tv-c3': {
+                title: "LG C3 OLED TV Review",
+                category: "Home Theater",
+                date: "1 month ago",
+                icon: "fa-tv",
+                score: "9.4",
+                content: `<p class="font-bold text-xl text-white mb-4">The Big Screen Choice</p><p>For console gamers or living room PC setups, the C3 is unbeatable. Low input lag, VRR support, and perfect OLED blacks make it the best TV for gaming.</p>`
+            },
+            'mouse-final': {
+                title: "Finalmouse UltralightX Review",
+                category: "Esports",
+                date: "1 month ago",
+                icon: "fa-feather",
+                score: "8.7",
+                content: `<p class="font-bold text-xl text-white mb-4">Featherweight</p><p>At 35 grams, it feels like holding air. The carbon fiber construction is rigid, but availability is scarce and QC can be hit or miss.</p>`
+            }
+        };
+
+        // Navigation Logic
+        function showPage(pageId) {
+            const pages = [
+                'home-page', 'about-page', 'article-view', 
+                'privacy-page', 'terms-page', 'contact-page', 'cookie-page'
+            ];
+            
+            // Hide all pages
+            pages.forEach(id => document.getElementById(id).classList.add('hidden'));
+
+            // Show specific page
+            if (pageId === 'home') document.getElementById('home-page').classList.remove('hidden');
+            else if (pageId === 'about') document.getElementById('about-page').classList.remove('hidden');
+            else if (pageId === 'privacy') document.getElementById('privacy-page').classList.remove('hidden');
+            else if (pageId === 'terms') document.getElementById('terms-page').classList.remove('hidden');
+            else if (pageId === 'contact') document.getElementById('contact-page').classList.remove('hidden');
+            else if (pageId === 'cookie') document.getElementById('cookie-page').classList.remove('hidden');
+            else if (pageId === 'article') document.getElementById('article-view').classList.remove('hidden');
+            
+            window.scrollTo(0,0);
+        }
+
+        // Article Logic
+        function openArticle(id) {
+            const data = articles[id];
+            if (!data) {
+                // Fallback for demo purposes if article data isn't fully populated in this snippet
+                document.getElementById('art-title').innerText = "Article Content Loading...";
+                document.getElementById('art-content').innerHTML = "<p>Full content would appear here.</p>";
+            } else {
+                document.getElementById('art-title').innerText = data.title;
+                document.getElementById('art-category').innerText = data.category;
+                document.getElementById('art-date').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${data.date}`;
+                document.getElementById('art-score').innerText = data.score;
+                document.getElementById('art-icon').className = `fa-solid ${data.icon} text-6xl text-gray-600`;
+                document.getElementById('art-content').innerHTML = data.content;
+            }
+            showPage('article');
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
